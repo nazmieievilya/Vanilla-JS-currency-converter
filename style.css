@@ -34,6 +34,9 @@ header {
 form :where(input, select, button) {
   border: none;
 }
+#amount {
+  width: 250px;
+}
 #switch {
   display: flex;
   align-items: center;
