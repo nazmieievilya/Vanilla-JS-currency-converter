@@ -16,6 +16,7 @@
   border-radius: 10px;
 }
 body {
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -24,7 +25,7 @@ body {
 }
 
 header {
-  font-size: 28px;
+  font-size: 20px;
   font-weight: 400;
   text-align: center;
 }
