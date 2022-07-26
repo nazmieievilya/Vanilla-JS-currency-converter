@@ -27,7 +27,10 @@
           <div class="from">
             <p>From</p>
             <div class="select-box">
-              <!-- <img src="https://countryflagsapi.com/png/ua" alt="flag" /> -->
+              <div class="currency-container">
+                <img id="fromImage" src="" alt="flag" />
+              </div>
+
               <select id="from-Droplist">
                 <option value="UAH">UAH</option>
                 <option value="USD">USD</option>
@@ -36,11 +39,15 @@
             </div>
           </div>
 
-          <div class="icon"><i class="fas fa-exchange-alt"> </i></div>
+          <div id="switch" class="icon">
+            <i class="fas fa-exchange-alt"> </i>
+          </div>
           <div class="to">
             <p>To</p>
             <div class="select-box">
-              <!-- <img src="https://countryflagsapi.com/png/usa" alt="flag" /> -->
+              <div class="currency-container">
+                <img id="toImage" alt="flag" />
+              </div>
               <select id="to-Droplist">
                 <option value="UAH">UAH</option>
                 <option value="BTC">BTC</option>
@@ -48,10 +55,10 @@
               </select>
             </div>
           </div>
-          <div class="exchange-rate"></div>
-          <button id="getExchange">Get Exchange Rate</button>
         </div>
       </form>
+      <div class="exchange-rate"></div>
+      <button id="getExchange">Get Exchange Rate</button>
     </div>
     <script src="js/country-list.js"></script>
     <script src="js/script.js"></script>
