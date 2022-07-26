@@ -4,21 +4,42 @@ const dropListFrom = document.querySelector('.from select');
 const dropListTo = document.querySelector('.to select');
 const getExchangeButton = document.getElementById('getExchange');
 const exchangeRateResult = document.querySelector('.exchange-rate');
+const fromElement = document.getElementById('from-Droplist');
+const toElement = document.getElementById('to-Droplist');
 
-for (let i = 0; i < currencyCode.length; i++) {
-  const optionTag = `<option value="${currencyCode[i]}" >${currencyCode[i]}</option>`;
-  dropListFrom.insertAdjacentHTML('beforeend', optionTag);
-  dropListTo.insertAdjacentHTML('beforeend', optionTag);
+let fromInput = 'USD';
+let toInput = 'UAH';
+fromElement.value = fromInput;
+toElement.value = toInput;
+let amountInput = 1;
+
+function equalutyListener() {
+  // Create variables you will reassign if select on change and comparing if they are equals
+  if (fromElement.value === toElement.value) {
+    let switchVar = fromInput;
+    // replacing api request values
+    fromInput = toInput;
+    toInput = switchVar;
+
+    // updating select values
+    fromElement.value = fromInput;
+    toElement.value = toInput;
+  } else {
+    fromInput = fromElement.value;
+    toInput = toElement.value;
+  }
 }
 
-function getExchangeRate() {
-  // getting input values
-  const fromInput = document.getElementById('from-Droplist').value;
-  const toInput = document.getElementById('to-Droplist').value;
-  const amountInput = document.getElementById('amount').value;
-  console.log(fromInput, toInput, amountInput);
+dropListFrom.addEventListener('change', e => {
+  equalutyListener();
+});
+dropListTo.addEventListener('change', e => {
+  equalutyListener();
+});
 
-  // getting response about exchange rates
+function getExchangeRate() {
+  console.log('Clicked');
+  amountInput = document.getElementById('amount').value;
   var requestURL = `https://api.exchangerate.host/convert?from=${fromInput}&to=${toInput}&amount=${amountInput}`;
   var request = new XMLHttpRequest();
   request.open('GET', requestURL);
@@ -28,8 +49,8 @@ function getExchangeRate() {
   request.onload = function () {
     var response = request.response;
     exchangeRateResult.textContent = `${amountInput}${fromInput} = ${response.result}${toInput} `;
-    console.log(exchangeRateResult);
   };
 }
 
+getExchangeRate();
 getExchangeButton.addEventListener('click', getExchangeRate);
